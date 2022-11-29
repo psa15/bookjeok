@@ -1,4 +1,4 @@
-package io.toyproject.bookjeokclone.model.api;
+package io.toyproject.bookjeokclone.api;
 
 import io.toyproject.bookjeokclone.model.dto.BookRequest;
 import io.toyproject.bookjeokclone.model.entity.Book;
