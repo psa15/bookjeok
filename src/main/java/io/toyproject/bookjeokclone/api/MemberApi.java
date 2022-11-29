@@ -1,4 +1,4 @@
-package io.toyproject.bookjeokclone.model.api;
+package io.toyproject.bookjeokclone.api;
 
 import io.toyproject.bookjeokclone.model.dto.MemberRequest;
 import io.toyproject.bookjeokclone.model.entity.Member;
