@@ -16,7 +16,7 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @GetMapping("/boards?write")
+    @GetMapping("/boardswrite")
     public String write() {
         return "board/write";
     }
