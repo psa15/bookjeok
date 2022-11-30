@@ -8,18 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/board")
+@RequestMapping("/api/v1/boards")
 @RequiredArgsConstructor
 public class BoardApi {
 
     private final BoardService boardService;
 
-/*    @GetMapping("/write")
-    public String write() {
-        return "board/write";
-    }*/
 
-    @PostMapping("/write")
+
+    @PostMapping
     public Board write(@RequestBody BoardRequest request) {
         return boardService.create(request);
     }

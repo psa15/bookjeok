@@ -10,18 +10,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/board")
+@RequestMapping("/boards")
 @RequiredArgsConstructor
 public class BoardController {
 
     private final BoardService boardService;
 
-    @GetMapping("/write")
+    @GetMapping("/boards?write")
     public String write() {
         return "board/write";
     }
 
-    @PostMapping("/write")
+    @PostMapping
     public Board write(BoardRequest request) {
         return boardService.create(request);
     }
