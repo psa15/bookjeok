@@ -20,4 +20,6 @@ public class BoardService {
         Board board = Board.create(request);
         return boardRepository.save(board);
     }
+
+
 }
