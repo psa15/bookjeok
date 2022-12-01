@@ -14,8 +14,8 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @GetMapping
-    public String write(@RequestParam String write) {
+    @GetMapping(params = "write")
+    public String write() {
         return "board/write";
     }
 
