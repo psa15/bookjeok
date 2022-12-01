@@ -3,10 +3,14 @@ package io.toyproject.bookjeokclone.controller;
 import io.toyproject.bookjeokclone.model.dto.BoardRequest;
 import io.toyproject.bookjeokclone.model.entity.Board;
 import io.toyproject.bookjeokclone.service.BoardService;
+
 import io.toyproject.bookjeokclone.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +21,13 @@ public class BoardController {
 
     private final BoardService boardService;
 
+
     @GetMapping(params = "write")
     public String write() {
+
+    @GetMapping
+    public String write(@RequestParam String write) {
+
         return "board/write";
     }
 

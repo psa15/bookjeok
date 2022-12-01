@@ -15,3 +15,12 @@ spring:
       ddl-auto: update
     database: h2
     show-sql: true
+
+  devtools:
+    livereload:
+      enabled: false
+
+  thymeleaf:
+    mode: HTML
+    cache: false
+    encoding: UTF-8
