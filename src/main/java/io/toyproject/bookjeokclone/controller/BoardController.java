@@ -22,16 +22,11 @@ public class BoardController {
     public String write() {
         return "board/write";
     }
-
-/*    @PostMapping
-    public Board write(BoardRequest request) {
-        return boardService.create(request);
-    }*/
-@PostMapping
-public String write(BoardRequest request) {
-    boardService.create(request);
-    return "redirect:/boards/list";
-}
+    @PostMapping
+    public String write(BoardRequest request) {
+        boardService.create(request);
+        return "redirect:/boards/list";
+    }
 
     @GetMapping("/list")
     public String list(Model model) {
