@@ -5,7 +5,11 @@ import io.toyproject.bookjeokclone.model.entity.Board;
 import io.toyproject.bookjeokclone.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.ListIterator;
 
 @Controller
 @RequestMapping("/boards")
@@ -19,8 +23,21 @@ public class BoardController {
         return "board/write";
     }
 
-    @PostMapping
+/*    @PostMapping
     public Board write(BoardRequest request) {
         return boardService.create(request);
+    }*/
+@PostMapping
+public String write(BoardRequest request) {
+    boardService.create(request);
+    return "redirect:/boards/list";
+}
+
+    @GetMapping("/list")
+    public String list(Model model) {
+        List<Board> boardList = boardService.list();
+        model.addAttribute("boardList", boardList);
+
+        return "board/list";
     }
 }
