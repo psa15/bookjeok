@@ -35,4 +35,9 @@ public class BoardController {
 
         return "board/list";
     }
+
+    @GetMapping("/detail")
+    public void detail(Long id) {
+
+    }
 }

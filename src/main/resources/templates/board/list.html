@@ -21,7 +21,7 @@
             <tbody>
                 <tr th:each="board : ${boardList}">
                     <td th:text="${board.id}"></td>
-                    <td th:text="${board.title}"></td>
+                    <td><a th:text="${board.title}" th:href="${board.id}"></a></td>
                     <td th:text="${board.writer}"></td>
                 </tr>
             </tbody>
