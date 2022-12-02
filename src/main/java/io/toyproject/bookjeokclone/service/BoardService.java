@@ -30,6 +30,20 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
+    public Board getPost(Long id) {
+        Optional<Board> boardPost = boardRepository.findById(id);
+
+        if (boardPost.isPresent()) {
+            Board board = boardPost.get();
+            Board boardDetail = Board.builder()
+                    .title(board.getTitle())
+                    .content(board.getContent())
+                    .writer(board.getWriter())
+                    .build();
+            return boardDetail;
+        }
+        return null;
+    }
     public Long update(Long id, BoardUpdateRequest updateRequest) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다."));

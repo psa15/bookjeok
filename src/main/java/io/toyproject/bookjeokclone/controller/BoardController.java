@@ -1,6 +1,7 @@
 package io.toyproject.bookjeokclone.controller;
 
 import io.toyproject.bookjeokclone.model.dto.BoardRequest;
+import io.toyproject.bookjeokclone.model.dto.BoardUpdateRequest;
 import io.toyproject.bookjeokclone.model.entity.Board;
 import io.toyproject.bookjeokclone.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ public class BoardController {
     public String write() {
         return "board/write";
     }
+
     @PostMapping
     public String write(BoardRequest request) {
         boardService.create(request);
@@ -36,8 +38,19 @@ public class BoardController {
         return "board/list";
     }
 
-    @GetMapping("/detail")
-    public void detail(Long id) {
+    //수정하기
+    @GetMapping("/update/{id}")
+    public String update(@PathVariable Long id, Model model) {
+        Board board = boardService.getPost(id);
+        model.addAttribute("board", board);
+        return "board/update";
+    }
 
+    @PostMapping("/update")
+    public String update(@RequestParam("id") Long id, BoardRequest request) {
+
+        BoardUpdateRequest updateRequest = new BoardUpdateRequest(request.getTitle(), request.getContent());
+        boardService.update(id, updateRequest);
+        return "redirect:/boards/list";
     }
 }
