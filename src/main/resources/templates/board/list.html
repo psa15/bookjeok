@@ -26,7 +26,27 @@
                 </tr>
             </tbody>
         </table>
+        <button type="button" id="btnWrite">게시글 작성하기</button>
     </div>
 
 </body>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    $(document).ready(function (){
+
+        $("a").on("click", function (e) {
+            e.preventDefault();
+
+            let id = $(this).attr("href");
+            let url = "/boards/detail/" + id;
+            location.href = url;
+        });
+
+        $("#btnWrite").on("click", function () {
+            let url = "/boards?write"
+            location.href = url;
+        });
+    });
+</script>
 </html>

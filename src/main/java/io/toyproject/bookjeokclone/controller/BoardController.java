@@ -38,9 +38,20 @@ public class BoardController {
         return "board/list";
     }
 
+
+    //상세보기
+    @GetMapping( "/detail/{id}")
+    public String detail(@PathVariable Long id, Model model) {
+
+        Board board = boardService.getPost(id);
+        model.addAttribute("board", board);
+        return "board/detail";
+    }
+
     //수정하기
-    @GetMapping("/update/{id}")
+    @GetMapping(value = "/update/{id}")
     public String update(@PathVariable Long id, Model model) {
+
         Board board = boardService.getPost(id);
         model.addAttribute("board", board);
         return "board/update";
@@ -51,6 +62,14 @@ public class BoardController {
 
         BoardUpdateRequest updateRequest = new BoardUpdateRequest(request.getTitle(), request.getContent());
         boardService.update(id, updateRequest);
+        return "redirect:/boards/list";
+    }
+
+    //삭제하기
+    @PostMapping("/delete")
+    public String delete(@RequestParam("id") Long id) {
+        boardService.delete(id);
+
         return "redirect:/boards/list";
     }
 }
