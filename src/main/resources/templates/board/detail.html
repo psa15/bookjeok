@@ -42,7 +42,7 @@
     //삭제버튼 클릭시
     $("button[name='btnDelete']").on("click", function () {
 
-      actionForm.attr("action", "/boards/delete");
+      actionForm.attr("action", "/boards?delete");
       actionForm.attr("method", "post");
       actionForm.submit();
     });

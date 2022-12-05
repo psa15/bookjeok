@@ -1,6 +1,7 @@
 package io.toyproject.bookjeokclone.controller;
 
 import io.toyproject.bookjeokclone.model.dto.BoardRequest;
+import io.toyproject.bookjeokclone.model.dto.BoardResponse;
 import io.toyproject.bookjeokclone.model.dto.BoardUpdateRequest;
 import io.toyproject.bookjeokclone.model.entity.Board;
 import io.toyproject.bookjeokclone.service.BoardService;
@@ -43,7 +44,7 @@ public class BoardController {
     @GetMapping( "/{id}")
     public String detail(@PathVariable Long id, Model model) {
 
-        Board board = boardService.get(id);
+        BoardResponse board = boardService.get(id);
         model.addAttribute("board", board);
         return "board/detail";
     }
@@ -52,7 +53,7 @@ public class BoardController {
     @GetMapping(value = "/{id}", params = "update")
     public String update(@PathVariable Long id, Model model) {
 
-        Board board = boardService.get(id);
+        BoardResponse board = boardService.get(id);
         model.addAttribute("board", board);
         return "board/update";
     }
@@ -66,7 +67,7 @@ public class BoardController {
     }
 
     //삭제하기
-    @PostMapping("/delete")
+    @PostMapping(params = "delete")
     public String delete(@RequestParam("id") Long id) {
         boardService.delete(id);
 

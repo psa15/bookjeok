@@ -1,6 +1,7 @@
 package io.toyproject.bookjeokclone.service;
 
 import io.toyproject.bookjeokclone.model.dto.BoardRequest;
+import io.toyproject.bookjeokclone.model.dto.BoardResponse;
 import io.toyproject.bookjeokclone.model.dto.BoardUpdateRequest;
 import io.toyproject.bookjeokclone.model.entity.Board;
 import io.toyproject.bookjeokclone.repository.BoardRepository;
@@ -30,14 +31,10 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
-    public Board get(final Long id) {
+    public BoardResponse get(final Long id) {
 
         Board board = boardRepository.getById(id);
-        return Board.builder()
-                .title(board.getTitle())
-                .content(board.getContent())
-                .writer(board.getWriter())
-                .build();
+        return BoardResponse.response(board);
     }
 
     public Long update(Long id, BoardUpdateRequest updateRequest) {
