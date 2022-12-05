@@ -30,23 +30,18 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
-    public Board getPost(Long id) {
-        Optional<Board> boardPost = boardRepository.findById(id);
+    public Board get(final Long id) {
 
-        if (boardPost.isPresent()) {
-            Board board = boardPost.get();
-            Board boardDetail = Board.builder()
-                    .title(board.getTitle())
-                    .content(board.getContent())
-                    .writer(board.getWriter())
-                    .build();
-            return boardDetail;
-        }
-        return null;
+        Board board = boardRepository.getById(id);
+        return Board.builder()
+                .title(board.getTitle())
+                .content(board.getContent())
+                .writer(board.getWriter())
+                .build();
     }
+
     public Long update(Long id, BoardUpdateRequest updateRequest) {
-        Board board = boardRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다."));
+        Board board = boardRepository.getById(id);
         board.update(updateRequest.getTitle(), updateRequest.getContent());
         boardRepository.save(board);
         return id;
@@ -54,8 +49,7 @@ public class BoardService {
     }
 
     public void delete(Long id) {
-        Board board = boardRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다."));
+        Board board = boardRepository.getById(id);
         boardRepository.delete(board);
     }
 

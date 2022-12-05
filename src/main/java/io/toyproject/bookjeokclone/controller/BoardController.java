@@ -40,24 +40,24 @@ public class BoardController {
 
 
     //상세보기
-    @GetMapping( "/detail/{id}")
+    @GetMapping( "/{id}")
     public String detail(@PathVariable Long id, Model model) {
 
-        Board board = boardService.getPost(id);
+        Board board = boardService.get(id);
         model.addAttribute("board", board);
         return "board/detail";
     }
 
     //수정하기
-    @GetMapping(value = "/update/{id}")
+    @GetMapping(value = "/{id}", params = "update")
     public String update(@PathVariable Long id, Model model) {
 
-        Board board = boardService.getPost(id);
+        Board board = boardService.get(id);
         model.addAttribute("board", board);
         return "board/update";
     }
 
-    @PostMapping("/update")
+    @PostMapping(params = "update")
     public String update(@RequestParam("id") Long id, BoardRequest request) {
 
         BoardUpdateRequest updateRequest = new BoardUpdateRequest(request.getTitle(), request.getContent());

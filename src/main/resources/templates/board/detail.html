@@ -22,7 +22,7 @@
     </div>
     <button type="button" name="btnUpdate">수정</button>
     <button type="button" name="btnDelete">삭제</button>
-    <button type="button" name="btnList">목록</button>
+    <a th:text="목록" th:href="@{/boards/list}"></a>
   </form>
 </div>
 </body>
@@ -36,7 +36,7 @@
     //수정버튼 클릭시
     $("button[name='btnUpdate']").on("click", function () {
       let id = $("#id").val();
-      let url = "/boards/update/" + id;
+      let url = "/boards/" + id + "?update";
       location.href = url;
     });
     //삭제버튼 클릭시
@@ -45,11 +45,6 @@
       actionForm.attr("action", "/boards/delete");
       actionForm.attr("method", "post");
       actionForm.submit();
-    });
-    //목록버튼 클릭시
-    $("button[name='btnList']").on("click", function () {
-      let url = "/boards/list";
-      location.href = url;
     });
   });
 </script>

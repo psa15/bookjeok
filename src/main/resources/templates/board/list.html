@@ -21,7 +21,7 @@
             <tbody>
                 <tr th:each="board : ${boardList}">
                     <td th:text="${board.id}"></td>
-                    <td><a th:text="${board.title}" th:href="${board.id}"></a></td>
+                    <td><a th:text="${board.title}" th:href="@{/boards/{id}(id=${board.id})}"></a></td>
                     <td th:text="${board.writer}"></td>
                 </tr>
             </tbody>
@@ -34,14 +34,6 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
     $(document).ready(function (){
-
-        $("a").on("click", function (e) {
-            e.preventDefault();
-
-            let id = $(this).attr("href");
-            let url = "/boards/detail/" + id;
-            location.href = url;
-        });
 
         $("#btnWrite").on("click", function () {
             let url = "/boards?write"

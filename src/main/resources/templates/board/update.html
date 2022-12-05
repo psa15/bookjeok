@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container">
-  <form action='/boards/update' method="post">
+  <form action='/boards?update' method="post">
     <div class="form-group">
       <label for="writer">작성자</label>
       <input type="text" id="writer" name="writer" th:value="${board.writer}" readonly>
