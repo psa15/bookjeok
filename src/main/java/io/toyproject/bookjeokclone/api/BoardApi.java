@@ -1,6 +1,7 @@
 package io.toyproject.bookjeokclone.api;
 
 import io.toyproject.bookjeokclone.model.dto.BoardRequest;
+import io.toyproject.bookjeokclone.model.dto.BoardUpdateRequest;
 import io.toyproject.bookjeokclone.model.entity.Board;
 import io.toyproject.bookjeokclone.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -26,5 +27,16 @@ public class BoardApi {
     public List<Board> list() {
         List<Board> list = boardService.list();
         return list;
+    }
+
+    @PatchMapping("/{id}")
+    public Long update(@PathVariable Long id, @RequestBody BoardUpdateRequest request) {
+        return boardService.update(id, request);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        boardService.delete(id);
     }
 }

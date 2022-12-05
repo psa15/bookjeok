@@ -21,12 +21,24 @@
             <tbody>
                 <tr th:each="board : ${boardList}">
                     <td th:text="${board.id}"></td>
-                    <td th:text="${board.title}"></td>
+                    <td><a th:text="${board.title}" th:href="@{/boards/{id}(id=${board.id})}"></a></td>
                     <td th:text="${board.writer}"></td>
                 </tr>
             </tbody>
         </table>
+        <button type="button" id="btnWrite">게시글 작성하기</button>
     </div>
 
 </body>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    $(document).ready(function (){
+
+        $("#btnWrite").on("click", function () {
+            let url = "/boards?write"
+            location.href = url;
+        });
+    });
+</script>
 </html>

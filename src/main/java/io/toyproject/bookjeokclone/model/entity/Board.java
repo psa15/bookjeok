@@ -44,4 +44,9 @@ public class Board {
         this.title = title;
     }
 
+    public void update(String title, String content) {
+        this.content = content;
+        this.title = title;
+    }
+
 }

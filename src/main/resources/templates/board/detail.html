@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 상세보기</title>
+</head>
+<body>
+<div class="container">
+  <form action='' method="" id="actionForm">
+    <div class="form-group">
+      <label for="writer">작성자</label>
+      <input type="text" id="writer" name="writer" th:value="${board.writer}" readonly>
+    </div>
+    <div class="form-group">
+      <label for="title">제목</label>
+      <input type="text" id="title" name="title" th:value="${board.title}" readonly>
+      <input type="hidden" name="id" id="id" th:value="${id}">
+    </div>
+    <div class="form-group">
+      <label for="content">내용</label>
+      <input type="textarea" id="content" name="content" th:value="${board.content}" readonly>
+    </div>
+    <button type="button" name="btnUpdate">수정</button>
+    <button type="button" name="btnDelete">삭제</button>
+    <a th:text="목록" th:href="@{/boards/list}"></a>
+  </form>
+</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+  $(document).ready(function (){
+
+    let actionForm = $("#actionForm");
+
+    //수정버튼 클릭시
+    $("button[name='btnUpdate']").on("click", function () {
+      let id = $("#id").val();
+      let url = "/boards/" + id + "?update";
+      location.href = url;
+    });
+    //삭제버튼 클릭시
+    $("button[name='btnDelete']").on("click", function () {
+
+      actionForm.attr("action", "/boards?delete");
+      actionForm.attr("method", "post");
+      actionForm.submit();
+    });
+  });
+</script>
+</html>
