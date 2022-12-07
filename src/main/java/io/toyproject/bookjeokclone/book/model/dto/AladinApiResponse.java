@@ -1,7 +1,11 @@
 package io.toyproject.bookjeokclone.book.model.dto;
 
+import java.util.List;
+
 public class AladinApiResponse {
+
     private int version;
+    private String logo;
     private String tile;
     private String link;
     private String pubDate;
@@ -12,6 +16,6 @@ public class AladinApiResponse {
     private int searchCategoryId;
     private String searchCategoryName;
 
-    private AladinItem item;
+    private List<AladinItem> items;
 
 }
