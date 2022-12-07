@@ -1,18 +1,12 @@
 package io.toyproject.bookjeokclone.service;
 
-import io.toyproject.bookjeokclone.model.dto.BoardRequest;
-import io.toyproject.bookjeokclone.model.entity.Board;
-import io.toyproject.bookjeokclone.repository.BoardRepository;
+import io.toyproject.bookjeokclone.board.model.dto.BoardRequest;
+import io.toyproject.bookjeokclone.board.model.entity.Board;
+import io.toyproject.bookjeokclone.board.service.BoardService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 @SpringBootTest
 public class BoardServiceTests {

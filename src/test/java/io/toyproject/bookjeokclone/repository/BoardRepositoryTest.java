@@ -1,6 +1,7 @@
 package io.toyproject.bookjeokclone.repository;
 
-import io.toyproject.bookjeokclone.model.entity.Board;
+import io.toyproject.bookjeokclone.board.model.entity.Board;
+import io.toyproject.bookjeokclone.board.repository.BoardRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
