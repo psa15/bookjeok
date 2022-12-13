@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 등록</title>
+</head>
+<body>
+<div class="container">
+  <form action="/books/result" method="get">
+    <div class="form-group">
+      <label for="query">검색</label>
+      <input type="text" id="query" name="query">
+    </div>
+    <button type="submit" id="btnSearch">검색하기</button>
+  </form>
+</div>
+<div id="searchResult">
+
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+  $(document).ready(function () {
+
+
+    $("#btnSearch").on("click", function (){
+
+      let query = $("#query").val();
+      let url = "/books/result?query=" + query;
+      let result = $("div #searchResult");
+      function bookResult(success, data) {
+
+          let content = "<p th:text=\"${result.title}\"></p>";
+
+          content += '<p>' + data.item[0].title + '</p>';
+          result.append(content);
+      }
+      $.ajax({
+        url: url,
+        jsonp: "bookResult",
+        dataType: "jsonp"
+      });
+
+  });
+   /* let main = $("div #searchResult"); // aladin-bookinfo로 시작하는 id를 가진 div 엘리먼트를 찾습니다.
+// 그 엘리먼트가 존재한다면
+    if(main.length>0) {
+      var id = main.attr("id").substr(16, 10); // ISBN(10자리)부분을 잘라내서 얻습니다 (16칸부터 10개만큼의 문자 얻기)
+      var url = "http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=[TTBKEY]&cover=big&ItemId=" + id + "&output=js&callback=bookDisplay";
+
+// 콜백 함수입니다.
+      function bookDisplay(success, data) {
+
+        /!* 여기서 책 정보를 이용해 구조를 만듭니다! *!/
+      }
+
+// AJAX 요청을 보냅니다. getJSON() 함수는 알라딘 API 대용으로 사용불가.
+      $.ajax({
+        url: url,
+        jsonp: "bookDisplay",
+        dataType: "jsonp"
+      });
+    }*/
+  });
+
+</script>
+</html>

@@ -1,6 +1,7 @@
 package io.toyproject.bookjeokclone.book.service;
 
 import io.toyproject.bookjeokclone.book.api.AladinApi;
+import io.toyproject.bookjeokclone.book.model.dto.AladinApiRequest;
 import io.toyproject.bookjeokclone.book.model.dto.AladinApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,23 @@ public class AladinApiService {
 
     private final AladinApi aladinApi;
 
-    public void search() throws IOException {
+    public AladinApiResponse searchBook(AladinApiRequest request) throws IOException{
+        Map<String, String> options = new HashMap<>();
+        options.put("TTBKey", "ttbduwjstk10931727001");
+        options.put("Output", request.getOutput());
+        options.put("Version", request.getVersion());
+        options.put("Query", request.getQuery());
+        Call<AladinApiResponse> call = aladinApi.search(options);
+
+        Response<AladinApiResponse> response = call.execute();
+        if (!response.isSuccessful()) {
+            log.debug("error =====> {}", response.errorBody());
+        }
+        log.debug(" 성공? body: {},", response.body());
+
+        return response.body();
+    }
+    public AladinApiResponse search() throws IOException {
         String output = "js";
         String Version = "20131101";
         Map<String, String> options = new HashMap<>();
@@ -35,6 +52,8 @@ public class AladinApiService {
             log.debug("error =====> {}", response.errorBody());
         }
         log.debug(" 성공? body: {},", response.body());
+        System.out.println(" 성공? body: {},"+ response.body());
 
+        return response.body();
     }
 }

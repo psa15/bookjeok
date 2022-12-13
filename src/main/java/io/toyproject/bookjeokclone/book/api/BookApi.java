@@ -1,5 +1,6 @@
 package io.toyproject.bookjeokclone.book.api;
 
+import io.toyproject.bookjeokclone.book.model.dto.AladinApiResponse;
 import io.toyproject.bookjeokclone.book.model.dto.BookRequest;
 import io.toyproject.bookjeokclone.book.model.entity.Book;
 import io.toyproject.bookjeokclone.book.service.AladinApiService;
@@ -18,14 +19,10 @@ public class BookApi {
 
     private final AladinApiService aladinApiService;
 
-    @PostMapping
-    public Book create(@RequestBody BookRequest request) {
-        return bookService.create(request);
-    }
-
     @GetMapping
     public void search() throws IOException {
-        aladinApiService.search();
+         aladinApiService.search();
     }
+
 
 }
