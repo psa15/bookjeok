@@ -1,13 +1,12 @@
 package io.toyproject.bookjeokclone.book.controller;
 
-import io.toyproject.bookjeokclone.book.model.dto.AladinApiRequest;
+import io.toyproject.bookjeokclone.book.model.SearchCategory;
 import io.toyproject.bookjeokclone.book.model.dto.AladinApiResponse;
 import io.toyproject.bookjeokclone.book.service.AladinApiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import retrofit2.Response;
 
 import java.io.IOException;
 
@@ -15,19 +14,17 @@ import java.io.IOException;
 @RequestMapping("/books")
 @RequiredArgsConstructor
 public class BookController {
+
     private final AladinApiService aladinService;
 
-    @GetMapping(params = "search")
-    public String search() {
-        return "book/bookSearch";
-    }
+    @GetMapping
+    public String search(@RequestParam(value = "query", required = false) String query,
+                         @RequestParam(required = false) SearchCategory category,
+                         Model model) throws IOException {
 
-
-    @GetMapping("/result")
-    public String search(@RequestParam("query") String query, Model model) throws IOException {
-        AladinApiRequest request = new AladinApiRequest(query);
-        AladinApiResponse response = aladinService.searchBook(request);
+        model.addAttribute("searchCategory", SearchCategory.values());
+        AladinApiResponse response = query == null ? null : aladinService.searchBook(query, category);
         model.addAttribute("response", response);
-        return "book/result";
+        return "book/search";
     }
 }

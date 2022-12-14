@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 등록</title>
+</head>
+<body>
+<div class="container">
+  <form action="/books" method="get">
+    <div class="form-group">
+      <label for="query">검색</label>
+      <input type="text" id="query" name="query">
+    </div>
+    <button type="button" id="btnSearch">검색하기</button>
+  </form>
+</div>
+<div id="searchResult">
+  <table>
+    <span th:each="response : ${response}">
+        <td>
+            <tr th:each="item: ${response.getItem()}">
+                <td>
+                  <img id="img" th:src="${item.cover}" alt="책커버이미지" />
+                </td>
+                <td>
+                  <a th:text="${item.title}" th:href="${item.link}" />
+                </td>
+            </tr>
+        <td>
+    </span>
+  </table>
+
+</div>
+</body>
+
+</html>
