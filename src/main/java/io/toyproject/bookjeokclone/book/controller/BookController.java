@@ -25,7 +25,6 @@ public class BookController {
         model.addAttribute("searchCategory", SearchCategory.values());
         AladinApiResponse response = query == null ? null : aladinService.searchBook(query, SearchCategory.of(category));
         model.addAttribute("response", response);
-
         return "book/search";
     }
 }
