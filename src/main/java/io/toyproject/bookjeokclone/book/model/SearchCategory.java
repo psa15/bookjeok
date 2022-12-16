@@ -16,13 +16,5 @@ public enum SearchCategory {
     private final String value;
 
     private final String meaning;
-    public static SearchCategory of(String valueStr) {
-        for (SearchCategory category : SearchCategory.values()) {
-            if (category.value.equals(valueStr)) {
-                return category;
-            }
-        }
-        throw new IllegalArgumentException("일치하는 쿼리타입이 없습니다.");
-    }
 
 }

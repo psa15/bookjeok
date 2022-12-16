@@ -19,11 +19,11 @@ public class BookController {
 
     @GetMapping
     public String search(@RequestParam(value = "query", required = false) String query,
-                         @RequestParam(value = "category", required = false) String category,
+                         @RequestParam(value = "category", required = false) SearchCategory category,
                          Model model) throws IOException {
 
         model.addAttribute("searchCategory", SearchCategory.values());
-        AladinApiResponse response = query == null ? null : aladinService.searchBook(query, SearchCategory.of(category));
+        AladinApiResponse response = query == null ? null : aladinService.searchBook(query, category);
         model.addAttribute("response", response);
         return "book/search";
     }

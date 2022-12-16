@@ -10,7 +10,7 @@
     <div class="form-group">
         <div>검색하기</div>
         <select name="category" >
-            <option th:each="category : ${searchCategory}" th:value="${category.value}"
+            <option th:each="category : ${searchCategory}" th:value="${category.name}"
                     th:text="${category.meaning}" />
         </select>
       <input type="text" id="query" name="query">
