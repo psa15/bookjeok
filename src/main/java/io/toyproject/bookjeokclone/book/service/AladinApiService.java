@@ -28,6 +28,7 @@ public class AladinApiService {
         options.put("Output", request.getOutput());
         options.put("Version", request.getVersion());
         options.put("Query", request.getQuery());
+        options.put("QueryType", request.getQueryType());
         Call<AladinApiResponse> call = aladinApi.search(options);
 
         Response<AladinApiResponse> response = call.execute();

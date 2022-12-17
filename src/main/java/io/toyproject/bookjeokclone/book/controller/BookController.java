@@ -19,7 +19,7 @@ public class BookController {
 
     @GetMapping
     public String search(@RequestParam(value = "query", required = false) String query,
-                         @RequestParam(required = false) SearchCategory category,
+                         @RequestParam(value = "category", required = false) SearchCategory category,
                          Model model) throws IOException {
 
         model.addAttribute("searchCategory", SearchCategory.values());
